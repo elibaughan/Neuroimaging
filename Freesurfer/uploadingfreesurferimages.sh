@@ -9,5 +9,10 @@ $cobia/surf/rh.white:edgecolor=yellow \
 $cobia/surf/rh.pial:edgecolor=red
 
 
+cd ~/Desktop/FreeSurfer
+recon-all -skullstrip -clean-bm -gcut -subjid /1306
 
-recon-all -skullstrip -clean-bm -gcut -subjid 1306
+
+cd ~/Desktop/FreeSurfer
+freeview -v \
+1306/mri/brainmask.auto.mgz
