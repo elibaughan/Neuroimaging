@@ -4,22 +4,19 @@
 #SBATCH --nodes=1 # number of nodes
 #SBATCH -J "jlf" # job name
 #SBATCH --mem-per-cpu=32768M # memory per CPU core
-#SBATCH --mail-type=END
-#SBATCH --mail-type=FAIL
 
 ARTHOME=/fslhome/ebaughan/apps/art/
 export ARTHOME
-export ANTSPATH=/apps/ants/bin/
+export ANTSPATH=/fslhome/ebaughan/apps/ants/bin/
 PATH=${ANTSPATH}:${PATH}
-pokemon=$2
 
 files=$1
-echo=$files
-echo ("sub is")
-cd $files
+pokemon=$2
 
+cd $files
 mkdir $files/labels
-sh /fslhome/ebaughan/apps/ants/bin/antsJointLabelFusion.sh \
+
+sh ~/apps/ants/bin/antsJointLabelFusion.sh \
 -d 3 \
 -c 5 \
 -u 40:00:00 \
@@ -51,4 +48,3 @@ sh /fslhome/ebaughan/apps/ants/bin/antsJointLabelFusion.sh \
 -g $pokemon/OASIS-TRT-20-19/t1weighted_brain.nii.gz -l $pokemon/OASIS-TRT-20-19/OASIS-TRT-20-19_DKT31_CMA_labels.nii.gz \
 -g $pokemon/OASIS-TRT-20-20/t1weighted_brain.nii.gz -l $pokemon/OASIS-TRT-20-20/OASIS-TRT-20-20_DKT31_CMA_labels.nii.gz \
 -k 1
-                                                              21,1          57%
