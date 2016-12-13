@@ -1,0 +1,13 @@
+for x in $(ls ~/compute/class/); do
+cp -v ~/compute/class/$x/t1/resampled.nii.gz ~/templates/projecttbi/img_${x}.nii.gz
+done
+
+cd ~/scripts/class/
+vi projecttbi.sh
+
+var=`date +"%Y%m%d-%H%M%S"`
+mkdir -p ~/logfiles/$var
+sbatch \
+-o ~/logfiles/$var/output-projecttbi.txt \
+-e ~/logfiles/$var/error-projecttbi.txt \
+~/scripts/class/projecttbi.sh
